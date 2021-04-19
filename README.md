@@ -26,4 +26,7 @@ Intereses
 
 ![image](https://user-images.githubusercontent.com/61121429/115127157-5ab10100-9fa2-11eb-91be-6d3059537fe4.png)
 
+## Ventana Principal Modificada
+
+![image](https://user-images.githubusercontent.com/61121429/115158974-d83a4700-a05e-11eb-82d3-f10b81dae049.png)
 
