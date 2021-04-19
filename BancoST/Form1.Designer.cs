@@ -30,7 +30,6 @@ namespace BancoST
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimuladorDeCredito));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -245,16 +244,16 @@ namespace BancoST
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(109, 35);
+            this.label9.Location = new System.Drawing.Point(124, 43);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(346, 39);
+            this.label9.Size = new System.Drawing.Size(332, 38);
             this.label9.TabIndex = 16;
             this.label9.Text = "Simulador de creditos";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::BancoST.Properties.Resources.icons8_delete_1;
             this.pictureBox1.Location = new System.Drawing.Point(471, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(46, 40);
@@ -266,10 +265,10 @@ namespace BancoST
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Image = global::BancoST.Properties.Resources.icons8_merchant_account_80px;
             this.pictureBox2.Location = new System.Drawing.Point(3, 8);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 86);
+            this.pictureBox2.Size = new System.Drawing.Size(115, 97);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox2.TabIndex = 18;
             this.pictureBox2.TabStop = false;
