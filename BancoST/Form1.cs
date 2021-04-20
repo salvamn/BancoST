@@ -29,83 +29,86 @@ namespace BancoST
 
         private void btnIniciarSimulacion_Click(object sender, EventArgs e)
         {
-            bool nombre = Utilerias.ValidandoCadena(txtNombre.Text.Trim());
-            bool apellido = Utilerias.ValidandoCadena(txtApellido.Text.Trim());
-            string monto = txtMonto.Text.Trim();
-            int montoValidado = 0;
-            bool cantidadCuotas = Utilerias.ValidandoCantidadCuotas(Convert.ToInt32(numericCantidadCuotas.Value));
+            // SOLUCION DEFINITIVA
+            errorProviderNombre.SetIconPadding(txtNombre, -20);
+            errorProviderApellido.SetIconPadding(txtApellido, -20);
+            errorProviderMonto.SetIconPadding(txtMonto, -20);
+            errorProviderCuota.SetIconPadding(numericCantidadCuotas, -40);
 
-            if (nombre == false) // VALIDANDO CAMPO NOMBRE
-            {
-                errorProvider.SetIconPadding(txtNombre, -20);
-                errorProvider.SetError(txtNombre, "El campo nombre no puede estar vacio");
-            }
+            bool validarNombre = txtNombre.Text.Trim().Equals("");
+            bool validarApellido = txtApellido.Text.Trim().Equals("");
+            bool validaMonto = txtMonto.Text.Trim().Equals("");
+            bool validaCuotas = Utilerias.ValidandoCantidadCuotas((int)numericCantidadCuotas.Value);
+
+            int montoConvertido = 0;
+            bool montoValidado = false;
+
+
+            if (validarNombre)
+                errorProviderNombre.SetError(txtNombre, "Este campo no puede estar vacio.");
             else
-                errorProvider.Clear();
-           
+                errorProviderNombre.Clear();
 
-            if (apellido == false) 
-            {
-                errorProvider.SetIconPadding(txtApellido, -20);
-                errorProvider.SetError(txtApellido, "El campo apellido no puede estar vacio.");
-            }
+
+            if (validarApellido)
+                errorProviderApellido.SetError(txtApellido, "Este campo no puede estar vacio.");
             else
-                errorProvider.Clear();
+                errorProviderApellido.Clear();
 
-            if (cantidadCuotas == false)
-            {
-                errorProvider.SetIconPadding(numericCantidadCuotas, -40);
-                errorProvider.SetError(numericCantidadCuotas, "Las cuotas ingresadas estan fuera de los limites permitidos.");
-            }
-            else
-                errorProvider.Clear();
 
-            //-------------------------- VALIDANDO MONTO
-            if (txtMonto.Text.Equals(""))
-            {
-                errorProvider.SetIconPadding(txtMonto, -20);
-                errorProvider.SetError(txtMonto, "Este campo no puede estar vacio.");
-            }
+            if (validaMonto)
+                errorProviderMonto.SetError(txtMonto, "Este campo no puede estar vacio");
             else
             {
-                if(Utilerias.ValidandoMonto(monto) == false)
-                {
-                    errorProvider.SetIconPadding(txtMonto, -20);
-                    errorProvider.SetError(txtMonto, "Esta campo no puede contener letras.");
-                }
+                if (Utilerias.ValidandoMonto(txtMonto.Text.Trim()) == false)
+                    errorProviderMonto.SetError(txtNombre, "Este campo no puede contener letras.");
                 else
                 {
-                    montoValidado = Convert.ToInt32(monto);
-                    if(Utilerias.ValidandoMontoMinimo(montoValidado) == false)
-                    {
-                        errorProvider.SetIconPadding(txtMonto, -20);
-                        errorProvider.SetError(txtMonto, "El monto solicitado debe ser mayor a $ 500.000");
-                    }
+                    montoConvertido = int.Parse(txtMonto.Text.Trim());
+                    if (montoConvertido < 500_000)
+                        errorProviderMonto.SetError(txtMonto, "El monto minimo es de $ 500.000 pesos.");
                     else
                     {
-                        if (nombre && apellido && int.Parse(txtMonto.Text) >= 500_000 && cantidadCuotas)
-                        {
-
-                            errorProvider.Clear();
-                            montoValidado = int.Parse(txtMonto.Text);
-                            int cuotas = Convert.ToInt32(numericCantidadCuotas.Value);
-                            Double porcentajeInteres = Utilerias.CalcularPorcentajeInteres(cuotas);
-                            int cuotaLimpia = Utilerias.CalcularCuotaLimpia(montoValidado, cuotas);
-                            Double cuotaInteres = Utilerias.CalcularCuotaConIntereses(cuotaLimpia, porcentajeInteres);
-                            int montoFinal = Utilerias.CalcularMontoFinal((int)cuotaInteres, cuotas);
-
-                            txtPagoTotal.Enabled = true;
-                            txtPagoTotal.ReadOnly = false;
-                            txtPagoTotal.Text = montoFinal.ToString();
-                            txtPagoTotal.ReadOnly = true;
-
-                            txtValorCuota.Enabled = true;
-                            txtValorCuota.ReadOnly = false;
-                            txtValorCuota.Text = Convert.ToInt32(cuotaInteres).ToString();
-                            txtValorCuota.ReadOnly = true;
-                        }
+                        montoValidado = true;
+                        errorProviderMonto.Clear();
                     }
                 }
+            }
+
+
+            if (validaCuotas == false)
+                errorProviderCuota.SetError(numericCantidadCuotas, "La cuotas ingresadas estan fuera de rango");
+            else
+                errorProviderCuota.Clear();
+
+
+
+            if (!validarNombre && !validarApellido && montoValidado && validaCuotas)
+            {
+                errorProviderNombre.Clear();
+                errorProviderApellido.Clear();
+                errorProviderMonto.Clear();
+
+                int cuotas = Convert.ToInt32(numericCantidadCuotas.Value);
+                int montoFinal = 0;
+                int valorXCuota = 0;
+
+                double sacarInteresCuota = Utilerias.CalcularPorcentajeInteres(cuotas);
+                int cuotaLimpia = Utilerias.CalcularCuotaLimpia(montoConvertido, cuotas);
+                double cuotaInteres = Utilerias.CalcularCuotaConIntereses(cuotaLimpia, sacarInteresCuota);
+
+                montoFinal = Utilerias.CalcularMontoFinal((int)cuotaInteres, cuotas);
+                valorXCuota = (int)cuotaInteres;
+
+                txtPagoTotal.Enabled = true;
+                txtPagoTotal.ReadOnly = false;
+                txtPagoTotal.Text = montoFinal.ToString();
+                txtPagoTotal.ReadOnly = true;
+
+                txtValorCuota.Enabled = true;
+                txtValorCuota.ReadOnly = false;
+                txtValorCuota.Text = Convert.ToInt32(valorXCuota).ToString();
+                txtValorCuota.ReadOnly = true;
             }
         }
 
@@ -119,14 +122,11 @@ namespace BancoST
                 txtPagoTotal.Text = "";
                 txtValorCuota.Text = "";
                 numericCantidadCuotas.Value = 0;
+                errorProviderNombre.Clear();
             }
             catch (Exception) { }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -134,10 +134,6 @@ namespace BancoST
             this.Dispose();
         }
 
-        private void SimuladorDeCredito_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void SimuladorDeCredito_MouseDown(object sender, MouseEventArgs e)
         {
@@ -146,33 +142,3 @@ namespace BancoST
         }
     }
 }
-
-
-/*
-if (nombre && apellido && int.Parse(txtMonto.Text) >= 500_000 && cantidadCuotas)
-{
-
-    errorProvider.Clear();
-    montoValidado = int.Parse(txtMonto.Text);
-    int cuotas = Convert.ToInt32(numericCantidadCuotas.Value);
-    Double porcentajeInteres = Utilerias.CalcularPorcentajeInteres(cuotas);
-    int cuotaLimpia = Utilerias.CalcularCuotaLimpia(montoValidado, cuotas);
-    Double cuotaInteres = Utilerias.CalcularCuotaConIntereses(cuotaLimpia, porcentajeInteres);
-    int montoFinal = Utilerias.CalcularMontoFinal((int)cuotaInteres, cuotas);
-
-    txtPagoTotal.Enabled = true;
-    txtPagoTotal.ReadOnly = false;
-    txtPagoTotal.Text = montoFinal.ToString();
-    txtPagoTotal.ReadOnly = true;
-
-    txtValorCuota.Enabled = true;
-    txtValorCuota.ReadOnly = false;
-    txtValorCuota.Text = cuotaInteres.ToString();
-    txtValorCuota.ReadOnly = true;
-}
-else
-{
-    errorProvider.SetIconPadding(txtMonto, -20);
-    errorProvider.SetError(txtMonto, "Ingrese un valor mayo o igual a $ 500.000");
-}
-*/

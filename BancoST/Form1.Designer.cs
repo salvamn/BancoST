@@ -43,17 +43,23 @@ namespace BancoST
             this.btnIniciarSimulacion = new System.Windows.Forms.Button();
             this.txtPagoTotal = new System.Windows.Forms.TextBox();
             this.txtValorCuota = new System.Windows.Forms.TextBox();
-            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderNombre = new System.Windows.Forms.ErrorProvider(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.errorProviderApellido = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderMonto = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProviderCuota = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericCantidadCuotas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderNombre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderApellido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMonto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCuota)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -122,7 +128,7 @@ namespace BancoST
             this.txtNombre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNombre.ForeColor = System.Drawing.SystemColors.Window;
-            this.errorProvider.SetIconPadding(this.txtNombre, -20);
+            this.errorProviderNombre.SetIconPadding(this.txtNombre, -20);
             this.txtNombre.Location = new System.Drawing.Point(147, 125);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(369, 31);
@@ -133,7 +139,7 @@ namespace BancoST
             this.txtApellido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtApellido.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtApellido.ForeColor = System.Drawing.SystemColors.Window;
-            this.errorProvider.SetIconPadding(this.txtApellido, -20);
+            this.errorProviderNombre.SetIconPadding(this.txtApellido, -20);
             this.txtApellido.Location = new System.Drawing.Point(147, 188);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(370, 31);
@@ -144,7 +150,7 @@ namespace BancoST
             this.txtMonto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtMonto.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMonto.ForeColor = System.Drawing.SystemColors.Window;
-            this.errorProvider.SetIconPadding(this.txtMonto, -20);
+            this.errorProviderNombre.SetIconPadding(this.txtMonto, -20);
             this.txtMonto.Location = new System.Drawing.Point(147, 246);
             this.txtMonto.Name = "txtMonto";
             this.txtMonto.Size = new System.Drawing.Size(370, 31);
@@ -155,7 +161,7 @@ namespace BancoST
             this.numericCantidadCuotas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.numericCantidadCuotas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericCantidadCuotas.ForeColor = System.Drawing.SystemColors.Window;
-            this.errorProvider.SetIconPadding(this.numericCantidadCuotas, -20);
+            this.errorProviderNombre.SetIconPadding(this.numericCantidadCuotas, -20);
             this.numericCantidadCuotas.Location = new System.Drawing.Point(147, 329);
             this.numericCantidadCuotas.Name = "numericCantidadCuotas";
             this.numericCantidadCuotas.Size = new System.Drawing.Size(194, 34);
@@ -165,6 +171,8 @@ namespace BancoST
             // 
             this.btnIniciarSimulacion.BackColor = System.Drawing.Color.SteelBlue;
             this.btnIniciarSimulacion.FlatAppearance.BorderSize = 0;
+            this.btnIniciarSimulacion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnIniciarSimulacion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
             this.btnIniciarSimulacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciarSimulacion.ForeColor = System.Drawing.SystemColors.Window;
             this.btnIniciarSimulacion.Location = new System.Drawing.Point(21, 411);
@@ -180,7 +188,7 @@ namespace BancoST
             this.txtPagoTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtPagoTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPagoTotal.ForeColor = System.Drawing.SystemColors.Window;
-            this.errorProvider.SetIconPadding(this.txtPagoTotal, -20);
+            this.errorProviderNombre.SetIconPadding(this.txtPagoTotal, -20);
             this.txtPagoTotal.Location = new System.Drawing.Point(287, 478);
             this.txtPagoTotal.Name = "txtPagoTotal";
             this.txtPagoTotal.ReadOnly = true;
@@ -192,17 +200,17 @@ namespace BancoST
             this.txtValorCuota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.txtValorCuota.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtValorCuota.ForeColor = System.Drawing.SystemColors.Window;
-            this.errorProvider.SetIconPadding(this.txtValorCuota, -20);
+            this.errorProviderNombre.SetIconPadding(this.txtValorCuota, -20);
             this.txtValorCuota.Location = new System.Drawing.Point(147, 534);
             this.txtValorCuota.Name = "txtValorCuota";
             this.txtValorCuota.ReadOnly = true;
             this.txtValorCuota.Size = new System.Drawing.Size(369, 31);
             this.txtValorCuota.TabIndex = 12;
             // 
-            // errorProvider
+            // errorProviderNombre
             // 
-            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider.ContainerControl = this;
+            this.errorProviderNombre.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProviderNombre.ContainerControl = this;
             // 
             // label7
             // 
@@ -260,7 +268,6 @@ namespace BancoST
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             // 
             // pictureBox2
@@ -272,6 +279,21 @@ namespace BancoST
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox2.TabIndex = 18;
             this.pictureBox2.TabStop = false;
+            // 
+            // errorProviderApellido
+            // 
+            this.errorProviderApellido.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProviderApellido.ContainerControl = this;
+            // 
+            // errorProviderMonto
+            // 
+            this.errorProviderMonto.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProviderMonto.ContainerControl = this;
+            // 
+            // errorProviderCuota
+            // 
+            this.errorProviderCuota.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProviderCuota.ContainerControl = this;
             // 
             // SimuladorDeCredito
             // 
@@ -309,12 +331,14 @@ namespace BancoST
             this.Opacity = 0.9D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simulador de creditos";
-            this.Load += new System.EventHandler(this.SimuladorDeCredito_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SimuladorDeCredito_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.numericCantidadCuotas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderNombre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderApellido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderMonto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCuota)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,13 +359,16 @@ namespace BancoST
         private System.Windows.Forms.Button btnIniciarSimulacion;
         private System.Windows.Forms.TextBox txtPagoTotal;
         private System.Windows.Forms.TextBox txtValorCuota;
-        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.ErrorProvider errorProviderNombre;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ErrorProvider errorProviderApellido;
+        private System.Windows.Forms.ErrorProvider errorProviderMonto;
+        private System.Windows.Forms.ErrorProvider errorProviderCuota;
     }
 }
 

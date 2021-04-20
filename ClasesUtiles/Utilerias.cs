@@ -8,25 +8,6 @@ namespace ClasesUtiles
 {
     public class Utilerias
     {
-        /// <summary>
-        /// Esta clase evalua un string
-        /// </summary>
-        /// <param name="cadena"></param>
-        /// <returns>
-        /// true : si la cadena tiene una longitud mayor o igual a 1.
-        /// 
-        /// <br></br>
-        /// 
-        /// false : si la cadena esta vacia o su longitud es menor a 1.
-        /// </returns>
-        public static bool ValidandoCadena(string cadena)
-        {
-            if (cadena.Equals(""))
-                return false;
-            return true;
-        }
-
-
         public static bool ValidandoMonto(string cadena)
         {
             foreach(char c in cadena)
@@ -37,14 +18,6 @@ namespace ClasesUtiles
                 }
             }
             return true;
-        }
-
-
-        public static bool ValidandoMontoMinimo(int monto)
-        {
-            if (monto >= 500_000)
-                return true;
-            return false;
         }
 
 
