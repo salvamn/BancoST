@@ -41,22 +41,19 @@ namespace ClasesUtiles
 
         public static int CalcularCuotaLimpia(int monto, int cantidadCuotas)
         {
-            int cuotaLimpia = (monto / cantidadCuotas);
-            return cuotaLimpia;
+            return monto / cantidadCuotas;
         }
 
 
         public static Double CalcularCuotaConIntereses(int cuota, Double porcentaje)
         {
-            Double cuotaInteres = cuota + (cuota * porcentaje);
-            return cuotaInteres;
+            return cuota + (cuota * porcentaje);
         }
 
 
         public static int CalcularMontoFinal(int cuotaInteres, int cantidadC)
         {
-            int montoFinal = cuotaInteres * cantidadC;
-            return montoFinal;
+            return cuotaInteres * cantidadC;
         }
     }
 }

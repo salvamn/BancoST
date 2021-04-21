@@ -90,15 +90,12 @@ namespace BancoST
                 errorProviderMonto.Clear();
 
                 int cuotas = Convert.ToInt32(numericCantidadCuotas.Value);
-                int montoFinal = 0;
-                int valorXCuota = 0;
-
                 double sacarInteresCuota = Utilerias.CalcularPorcentajeInteres(cuotas);
                 int cuotaLimpia = Utilerias.CalcularCuotaLimpia(montoConvertido, cuotas);
                 double cuotaInteres = Utilerias.CalcularCuotaConIntereses(cuotaLimpia, sacarInteresCuota);
 
-                montoFinal = Utilerias.CalcularMontoFinal((int)cuotaInteres, cuotas);
-                valorXCuota = (int)cuotaInteres;
+                int montoFinal = Utilerias.CalcularMontoFinal((int)cuotaInteres, cuotas);
+                int valorXCuota = (int)cuotaInteres;
 
                 txtPagoTotal.Enabled = true;
                 txtPagoTotal.ReadOnly = false;
@@ -130,8 +127,8 @@ namespace BancoST
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            //this.Close();
-            this.Dispose();
+            Dispose();
+            Close();
         }
 
 
